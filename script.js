@@ -17,3 +17,42 @@ function start() {
   document.getElementById("word").innerText = "Word: ";
   document.getElementById("length").innerText = "Word Length: " + word.length;
 }
+
+document.getElementById("submit").addEventListener("click", function() {
+    let guess = document.getElementById("guess").value;
+    if(guess.length < 1) {
+        document.getElementById("message").innerText = "You must enter a value";
+        guess.value = "";
+    }
+    else if(guess.length > 1) {
+        document.getElementById("message").innerText = "Value must only be 1 character";
+        guess.value = "";
+    }
+    else {
+        if(word.includes(guess)) {
+            correct.push(guess);
+            document.getElementById("message").innerText = "Correct";
+            guess.value = "";
+            hasWon = renderWord();
+        }
+        else {
+            totalGuesses -= 1;
+            document.getElementById("left").innerText = "Guesses Left: " + totalGuesses; 
+            document.getElementById("message").innerText = "Wrong";
+            guess.value = "";
+            wrong.push(guess);
+        }
+    }
+    if(hasWon === word) {
+        document.getElementById("message").innerText = "You Won";
+        start();
+    }
+    if(totalGuesses === 0) {
+        document.getElementById("message").innerText = "You Lost";
+        start();
+    }
+});
+
+document.getElementById("reset").addEventListener("click", function() {
+    start();
+});
