@@ -56,3 +56,15 @@ document.getElementById("submit").addEventListener("click", function() {
 document.getElementById("reset").addEventListener("click", function() {
     start();
 });
+
+function renderWord() {
+    let render = "";
+    for(let i = 0; i < word.length; i++) {
+        if(correct.includes(word.charAt(i)))
+            render += word.charAt(i);
+        else
+            render += " ";     
+    }
+    document.getElementById("word").innerText = "Word: " + render;
+    return render;
+}
