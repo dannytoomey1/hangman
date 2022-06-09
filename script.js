@@ -6,17 +6,7 @@ let word = "";
 let hasWon = "";
 start();
 
-function start() {
-  let random = Math.floor(Math.random() * 20);
-  word = wordList[random];
-  totalGuesses= 6;
-  correct = new Array(10);
-  wrong = new Array(10);
-  hasWon = "";
-  document.getElementById("left").innerText = "Guesses Left: " + totalGuesses;
-  document.getElementById("word").innerText = "Word: ";
-  document.getElementById("length").innerText = "Word Length: " + word.length;
-}
+
 
 document.getElementById("submit").addEventListener("click", function() {
     let guess = document.getElementById("guess").value;
@@ -56,6 +46,18 @@ document.getElementById("submit").addEventListener("click", function() {
 document.getElementById("reset").addEventListener("click", function() {
     start();
 });
+
+function start() {
+    let random = Math.floor(Math.random() * 20);
+    word = wordList[random];
+    totalGuesses= 6;
+    correct = new Array(10);
+    wrong = new Array(10);
+    hasWon = "";
+    document.getElementById("left").innerText = "Guesses Left: " + totalGuesses;
+    document.getElementById("word").innerText = "Word: ";
+    document.getElementById("length").innerText = "Word Length: " + word.length;
+}
 
 function renderWord() {
     let render = "";
