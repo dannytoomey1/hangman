@@ -1,0 +1,18 @@
+html {  
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+      display: flex;  
+        justify-content: center;  
+        align-items: center;  
+        flex-direction: column;
+}
+
+input {
+    border-color: black;
+}
+
+button {
+    margin-top: 10px;
+}
