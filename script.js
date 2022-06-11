@@ -1,5 +1,9 @@
-let totalGuesses = 6;
+//Constant
 let wordList = ["planet", "poison", "control", "deadly", "central", "diamond", "franchise", "highway", "bathroom", "applaud", "publish", "measure", "profit", "rider", "childish", "public", "decide", "ideal", "eavesdrop", "parking"];
+
+
+//Variables
+let totalGuesses = 6;
 let correct = new Array(10);
 let wrong = new Array(10);
 let word = "";
@@ -7,7 +11,7 @@ let hasWon = "";
 start();
 
 
-
+//event listeners
 document.getElementById("submit").addEventListener("click", function() {
     let guess = document.getElementById("guess").value;
     if(guess.length < 1) {
@@ -47,6 +51,7 @@ document.getElementById("reset").addEventListener("click", function() {
     start();
 });
 
+//render functions
 function start() {
     let random = Math.floor(Math.random() * 20);
     word = wordList[random];
