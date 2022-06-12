@@ -70,7 +70,7 @@ function renderWord() {
         if(correct.includes(word.charAt(i)))
             render += word.charAt(i);
         else
-            render += " ";     
+            render += "_";     
     }
     document.getElementById("word").innerText = "Word: " + render;
     return render;
