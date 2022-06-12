@@ -5,7 +5,7 @@ let wordList = ["planet", "poison", "control", "deadly", "central", "diamond", "
 //Variables
 let totalGuesses = 6;
 let correct = new Array(10);
-let wrong = new Array(10);
+let wrong = new Array(6);
 let word = "";
 let hasWon = "";
 start();
@@ -14,27 +14,25 @@ start();
 //event listeners
 document.getElementById("submit").addEventListener("click", function() {
     let guess = document.getElementById("guess").value;
+    document.getElementById("guess").value = "";
     if(guess.length < 1) {
         document.getElementById("message").innerText = "You must enter a value";
-        guess.value = "";
     }
     else if(guess.length > 1) {
         document.getElementById("message").innerText = "Value must only be 1 character";
-        guess.value = "";
     }
     else {
         if(word.includes(guess)) {
             correct.push(guess);
             document.getElementById("message").innerText = "Correct";
-            guess.value = "";
             hasWon = renderWord();
         }
         else {
             totalGuesses -= 1;
             document.getElementById("left").innerText = "Guesses Left: " + totalGuesses; 
             document.getElementById("message").innerText = "Wrong";
-            guess.value = "";
             wrong.push(guess);
+            renderMisses();
         }
     }
     if(hasWon === word) {
@@ -57,11 +55,12 @@ function start() {
     word = wordList[random];
     totalGuesses= 6;
     correct = new Array(10);
-    wrong = new Array(10);
+    wrong = new Array(6);
     hasWon = "";
     document.getElementById("left").innerText = "Guesses Left: " + totalGuesses;
     document.getElementById("word").innerText = "Word: ";
     document.getElementById("length").innerText = "Word Length: " + word.length;
+    document.getElementById("misses").innerText = "Misses: ";
 }
 
 function renderWord() {
@@ -74,4 +73,13 @@ function renderWord() {
     }
     document.getElementById("word").innerText = "Word: " + render;
     return render;
+}
+
+function renderMisses() {
+    let misses = wrong[wrong.length - 1];
+    for(let i = wrong.length - 2; i > -1; i--) {
+        if(wrong[i] != null)
+            misses += ", " + wrong[i];
+    }
+    document.getElementById("misses").innerText = "Misses: " + misses;
 }
